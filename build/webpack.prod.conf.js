@@ -113,9 +113,10 @@ const webpackConfig = merge(baseWebpackConfig, {
       stripPrefix: 'dist/'
     }),
     new PrerenderSPAPlugin({
-      staticDir: path.resolve(__dirname, '..'),
-      routes: ['/', 'static/items' ],
+      staticDir: path.resolve(__dirname, '../dist'),
+      routes: ['/', '/items' ],
       renderer: new PuppeteerRenderer()
+
     })
   ]
 })
