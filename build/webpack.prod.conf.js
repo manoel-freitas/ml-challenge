@@ -24,7 +24,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
-      extract: true
+      extract: false
     })
   },
   devtool: config.build.productionSourceMap ? '#source-map' : false,
@@ -42,7 +42,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       compress: {
         warnings: false
       },
-      sourceMap: true
+      sourceMap: false
     }),
     // extract css into its own file
     new ExtractTextPlugin({
@@ -114,7 +114,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     }),
     new PrerenderSPAPlugin({
       staticDir: path.resolve(__dirname, '..'),
-      routes: ['/', '/items' ],
+      routes: ['/', 'static/items' ],
       renderer: new PuppeteerRenderer()
     })
   ]
