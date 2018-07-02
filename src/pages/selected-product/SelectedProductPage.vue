@@ -8,6 +8,7 @@
 import { mapState, mapMutations } from "vuex";
 import * as TYPES from "@/store/mutations-type";
 import ProductInformation from "./components/ProductInformation";
+import metaMixin from "../mixins/metaMixin";
 export default {
   computed: {
     ...mapState(["selectedProduct"])
@@ -15,6 +16,7 @@ export default {
   components: {
     ProductInformation
   },
+  mixins: [metaMixin]
 };
 </script>
 

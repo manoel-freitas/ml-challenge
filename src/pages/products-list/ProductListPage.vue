@@ -10,6 +10,7 @@
 import ProductListItem from './components/ProductListItem'
 import * as TYPES from '@/store/mutations-type'
 import {mapActions, mapState, mapMutations} from 'vuex'
+import metaMixin from "../mixins/metaMixin";
 export default {
   name: 'products-page',
   components: {
@@ -18,6 +19,7 @@ export default {
   props: {
     search: String
   },
+  mixins: [metaMixin],
   computed: {
     ...mapState([
       'products',

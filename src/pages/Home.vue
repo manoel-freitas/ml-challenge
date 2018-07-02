@@ -3,11 +3,8 @@
 </template>
 
 <script>
+import metaMixin from "./mixins/metaMixin";
 export default {
-
+  mixins: [metaMixin]
 }
 </script>
-
-<style>
-
-</style>
