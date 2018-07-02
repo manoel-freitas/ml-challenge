@@ -9,8 +9,10 @@ const SelectedProductPage = (resolve) => require(['../pages/selected-product/Sel
 
 Vue.use(Router)
 
+const isProd = process.env.NODE_ENV === 'production'
+
 export default new Router({
-  mode: 'history',
+  mode:  isProd ? 'hash' : 'history',
   routes: [
     {
       path: '/',
