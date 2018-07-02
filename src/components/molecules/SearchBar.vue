@@ -55,7 +55,7 @@ export default {
       const query = e.target.value
       this.fetchProducts({query}).then(products => {
         this.hasItems = false;
-        this.$router.push({name: 'ProductsSearch', params: {query}})
+        this.$router.push({name: 'ProductsSearch', params: {search:query}, query:{search:query} })
       });
     }
   }

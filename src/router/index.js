@@ -1,11 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-const ProductsListPage = () => import('../pages/products-list/ProductListPage.vue')
+const ProductsListPage = (resolve) => require(['../pages/products-list/ProductListPage.vue'], resolve)
 
-const Home = () => import('../pages/Home.vue')
+const Home = (resolve) => require(['../pages/Home.vue'], resolve)
 
-const SelectedProductPage = () => import('../pages/selected-product/SelectedProductPage.vue')
+const SelectedProductPage = (resolve) => require(['../pages/selected-product/SelectedProductPage.vue'], resolve)
 
 Vue.use(Router)
 
@@ -18,9 +18,10 @@ export default new Router({
       component: Home
     },
     {
-      path: '/items?search=:query',
+      path: '/items',
       name: 'ProductsSearch',
-      component: ProductsListPage
+      component: ProductsListPage,
+      props: true
     },
     {
       path: '/items/:id',

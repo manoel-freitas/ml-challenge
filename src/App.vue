@@ -2,7 +2,7 @@
   <div id="app">
     <AppHeader />
     <main class="container">
-      <keep-alive>
+      <keep-alive include="products-page">
         <router-view></router-view>
       </keep-alive>
     </main>

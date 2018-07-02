@@ -15,15 +15,6 @@ export default {
   components: {
     ProductInformation
   },
-  methods: {
-    ...mapMutations({
-      unSelectProduct: TYPES.UNSELECT_PRODUCT
-    })
-  },
-  beforeRouteLeave(to, from, next) {
-      this.unSelectProduct()
-      next();
-  }
 };
 </script>
 

@@ -11,8 +11,12 @@ import ProductListItem from './components/ProductListItem'
 import * as TYPES from '@/store/mutations-type'
 import {mapActions, mapState, mapMutations} from 'vuex'
 export default {
+  name: 'products-page',
   components: {
     ProductListItem
+  },
+  props: {
+    search: String
   },
   computed: {
     ...mapState([
@@ -34,10 +38,11 @@ export default {
     }
   },
   mounted() {
-    const query = this.$route.params.search
+    const query = this.search
     if (query) {
       this.fetchProducts(query);
     }
+
   },
   beforeRouteLeave (to, from, next) {
     if (this.selectedProduct.id) {
@@ -46,7 +51,6 @@ export default {
             next()
           })
     }
-    next()
   }
 }
 </script>
