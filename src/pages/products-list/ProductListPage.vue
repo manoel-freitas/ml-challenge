@@ -1,20 +1,23 @@
 <template>
-  <section class="product-list">
+  <section class="product-list" v-if="products.length !== 0">
     <div>
       <ProductListItem  v-for="(product, index) in products" :key="index"  :product="product" @product-selected="goDetailProduct(product.id)"/>
     </div>
   </section>
+  <NoProductsInfo v-else/>
 </template>
 
 <script>
 import ProductListItem from './components/ProductListItem'
+import NoProductsInfo from './components/NoProductsInfo'
 import * as TYPES from '@/store/mutations-type'
 import {mapActions, mapState, mapMutations} from 'vuex'
 import metaMixin from "../mixins/metaMixin";
 export default {
   name: 'products-page',
   components: {
-    ProductListItem
+    ProductListItem,
+    NoProductsInfo
   },
   props: {
     search: String
@@ -38,13 +41,6 @@ export default {
           this.$router.push({name: 'DetailProduct', params: {id: productId}})
         })
     }
-  },
-  mounted() {
-    const query = this.search
-    if (query) {
-      this.fetchProducts(query);
-    }
-
   },
   beforeRouteLeave (to, from, next) {
     if (this.selectedProduct.id) {

@@ -1,6 +1,6 @@
 <template>
   <div class="searchContainer">
-    <input class="searchContainer--searchBox" @input="autocomplete"  @keyup.enter="searchProducts" type="search" name="search" placeholder="Nunca deixe de buscar" >
+    <input class="searchContainer--searchBox"  @keyup.enter="searchProducts" v-model="item" type="search" name="search" placeholder="Nunca deixe de buscar" >
     <div class="searchContainer--autocomplete-items" v-show="hasItems">
       <div @click="getProduct(product)" v-for="(product, index) in items" :key="index">
           <div class="product">
@@ -13,7 +13,7 @@
           </div>
       </div>
     </div>
-    <button  class="searchContainer--searchIcon">
+    <button @click="searchProducts"  class="searchContainer--searchIcon">
       <img src="@/assets/images/ic_Search.png" srcset="@/assets/images/ic_Search@2x.png" alt="Icone de lupa. indica que voce pode buscar ao clicar nesse botão" width="20" height="20">
     </button>
   </div>
@@ -25,21 +25,26 @@ export default {
   data() {
     return {
       hasItems: false,
-      items: []
+      items: [],
+      item: ''
     };
+  },
+  watch: {
+    item: function (oldItem, newItem)  {
+      if (newItem.length < 6) {
+        this.hasItems = false;
+        return;
+      }
+      this.fetchProducts({query: this.item}).then(products => {
+        this.items = products.filter((product, index) => index < 5);
+        this.hasItems = true;
+      });
+    }
   },
   methods: {
     ...mapActions(["fetchProducts", "fetchProductById", "fetchProductDescriptionById"]),
     autocomplete(e) {
-      const value = e.target.value;
-      if (value.length < 6) {
-        this.hasItems = false;
-        return value;
-      }
-      this.fetchProducts({query: value}).then(products => {
-        this.items = products.filter((product, index) => index < 5);
-        this.hasItems = true;
-      });
+
     },
     getProduct(product) {
       this.fetchProductById(product.id)
@@ -52,7 +57,7 @@ export default {
         })
     },
     searchProducts(e) {
-      const query = e.target.value
+      const query = this.$slugfy(this.item)
       this.fetchProducts({query}).then(products => {
         this.hasItems = false;
         this.$router.push({name: 'ProductsSearch', params: {search:query}, query:{search:query} })

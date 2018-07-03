@@ -12,7 +12,7 @@ Vue.use(Router)
 const isProd = process.env.NODE_ENV === 'production'
 
 export default new Router({
-  mode:  isProd ? 'hash' : 'history',
+  mode: isProd ? 'hash' : 'history',
   routes: [
     {
       path: '/',

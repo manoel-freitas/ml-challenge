@@ -4,8 +4,8 @@
       <img :src="product.picture" :alt="`Imagem do produto ${product.description}`" class="product-information--image">
       <div class="product-information--details">
         <h4 class="product-information--details---condition">{{condition}}</h4>
-        <h2 class="product-information--details---title">{{product.title}}</h2>
-        <h2 class="product-information--details---price">$ {{product.price}}</h2>
+        <h3 class="product-information--details---title">{{product.title}}</h3>
+        <h2 class="product-information--details---price"> {{product.price}}</h2>
         <button>Comprar</button>
       </div>
     </div>
@@ -62,6 +62,8 @@ export default {
     }
     &---title {
       font-weight: 500;
+      letter-spacing: 0px;
+      line-height: 20px;
     }
     &---price {
       font-weight: 500;
@@ -79,12 +81,14 @@ export default {
 }
 .product-description {
   width: 100%;
-  margin: 5%;
   h2 {
     color: $black;
   }
   p {
-    line-break: auto;
+    line-height: 20px;
+    letter-spacing: 1px;
+    font-weight: 500;
+    text-justify: distribute-all-lines;
   }
 }
 </style>

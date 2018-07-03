@@ -2,7 +2,7 @@
   <div class="product-list-item" @click="$emit('product-selected', product)">
     <img :src="product.picture" class="product--image" alt="img">
     <div class="product-list-item--product-information">
-      <span class="product--price"> ${{product.price}}  <img src="@/assets/images/ic_shipping.png" class="product--shipping" srcset="@/assets/images/ic_shipping@2x.png" v-if="hasShipping" alt=""></span>
+      <span class="product--price"> {{product.price}}  <img src="@/assets/images/ic_shipping.png" class="product--shipping" srcset="@/assets/images/ic_shipping@2x.png" v-if="hasShipping" alt=""></span>
       <span class="product--description"> {{product.title}}</span>
     </div>
     <span class="product--location">
